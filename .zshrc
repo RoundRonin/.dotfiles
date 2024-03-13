@@ -91,6 +91,7 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 
 source ~/.zsh_append
+# eval $(keychain --eval --agents ssh <keyname>)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
