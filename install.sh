@@ -20,3 +20,7 @@ rm -rf nvim-linux64.tar.gz
 ## SSH keys
 
 ## TMUX
+
+## fd find
+sudo apt install fd-find
+ln -s $(which fdfind) ~/.local/bin/fd
