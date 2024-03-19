@@ -24,3 +24,10 @@ rm -rf nvim-linux64.tar.gz
 ## fd find
 sudo apt install fd-find
 ln -s $(which fdfind) ~/.local/bin/fd
+
+## Zoxide
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+
+## Fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
