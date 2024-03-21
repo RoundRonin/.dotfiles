@@ -104,6 +104,12 @@ source ~/.zsh_append
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ovim="/usr/bin/vim"
+alias vi="nvim"
+alias v="nvim"
+alias V="nvim"
+alias vim="nvim"
+alias space='~/.dotfiles/scripts/space.sh'
 
 eval "$(zoxide init zsh --cmd cd)"	
 
