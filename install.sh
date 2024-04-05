@@ -1,4 +1,5 @@
 # Pre
+
 sudo -s
 apt update
 apt install curl
@@ -51,7 +52,7 @@ sudo apt update
 sudo apt install python3-dev python3-pip python3-setuptools
 pip3 install thefuck --user
 
-# Compilers
+# Compilers and utilities
 #
 ## C
 
@@ -68,3 +69,11 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.zshrc
 
 nvm install --ltc
+
+## Docker CLI
+
+sudo apt install docker
+
+## Unzip
+
+sudo apt install unzip
