@@ -57,7 +57,7 @@ pip3 install thefuck --user
 ## C
 
 sudo apt install clang -y
-
+sudo apt install cmake -y
 ## Rust
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
