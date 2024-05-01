@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_zsh () {
-    apt install zsh -y 
+    sudo apt install zsh -y 
 }
 
 install_omz () {

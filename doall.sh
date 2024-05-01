@@ -1,5 +1,6 @@
 #!/bin/bash
 
+trap "exit" INT
 # TODO establish universal installation process, not only ubuntu-specific
 
 arch=$(dpkg --print-architecture)
