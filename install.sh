@@ -1,8 +1,45 @@
 # Pre
 
+arch=$(dpkg --print-architecture)
+
 sudo -s
 apt update
 apt install curl
+
+# Compilers and utilities
+#
+## C
+
+sudo apt install clang -y
+sudo apt install cmake -y
+
+## Rust
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
+
+## JS
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+source ~/.zshrc
+
+nvm install --ltc
+
+## Docker CLI
+
+sudo apt install docker
+
+## Unzip
+
+sudo apt install unzip
+
+## NVM, NPM
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+bash
+nvm install --lts
+nvm use --lts
+exit
 
 # Main
 ## Zsh
@@ -16,11 +53,22 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 ## NVIM
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-sudo rm -rf /opt/nvim
-sudo tar -C /opt -xzf nvim-linux64.tar.gz
+# TODO replace with case statement
+if [ $arch -ne "amd64" ]
+then
+	# MAC: curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
+	git clone https://github.com/neovim/neovim
+	git checkout stable
+	cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+	sudo make install
+else
+	# Release for AMD64
+	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+	sudo rm -rf /opt/nvim
+	sudo tar -C /opt -xzf nvim-linux64.tar.gz
+	rm -rf nvim-linux64.tar.gz
+fi
 export PATH="$PATH:/opt/nvim-linux64/bin"
-rm -rf nvim-linux64.tar.gz
 
 ## Keychain
 sudo apt install keychain
@@ -54,34 +102,3 @@ sudo apt update
 sudo apt install python3-dev python3-pip python3-setuptools
 pip3 install thefuck --user
 
-# Compilers and utilities
-#
-## C
-
-sudo apt install clang -y
-sudo apt install cmake -y
-## Rust
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
-
-## JS
-
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
-source ~/.zshrc
-
-nvm install --ltc
-
-## Docker CLI
-
-sudo apt install docker
-
-## Unzip
-
-sudo apt install unzip
-
-## NVM, NPM
-
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-nvm install --lts
-nvm use --lts
