@@ -20,7 +20,7 @@ install_zoxide () {
 
 install_fzf () {
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install -all
+    ~/.fzf/install --all
 }
 
 install_thefuck () {

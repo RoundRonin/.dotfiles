@@ -15,9 +15,9 @@ change_shell () {
     chsh -s /usr/bin/zsh
 }
 
-configure_ssh () {
+# configure_ssh () {
     #TODO 
-}
+# }
 
 create_links
-chage_shell
+change_shell
