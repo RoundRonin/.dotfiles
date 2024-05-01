@@ -20,11 +20,11 @@ install_zoxide () {
 
 install_fzf () {
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
+    ~/.fzf/install -all
 }
 
 install_thefuck () {
     sudo apt update
-    sudo apt install python3-dev python3-pip python3-setuptools
-    pip3 install thefuck --user
+    sudo apt install python3-dev python3-pip python3-setuptools -y
+    pip3 install thefuck --user 
 }

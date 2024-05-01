@@ -12,9 +12,9 @@ install_rust () {
 install_node () {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-    bash
+    bash <<EOF
     nvm install --ltc
     nvm use --ltc
-    exit
+    EOF
     # TODO add checks for error (then install 16, use 16)
 }

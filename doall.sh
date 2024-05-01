@@ -4,7 +4,8 @@
 
 arch=$(dpkg --print-architecture)
 
-sudo -s
+sudo -s <<EOF
+EOF
 apt update
 apt install curl
 
