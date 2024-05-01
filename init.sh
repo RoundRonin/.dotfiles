@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 create_links () {
     rm -rf ~/.bashrc
@@ -18,3 +18,6 @@ change_shell () {
 configure_ssh () {
     #TODO 
 }
+
+create_links
+chage_shell

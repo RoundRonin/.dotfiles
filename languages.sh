@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 install_c () {
     sudo apt install clang -y

@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 install_unzip () {
     sudo apt install unzip

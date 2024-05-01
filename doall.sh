@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 # TODO establish universal installation process, not only ubuntu-specific
 
@@ -8,13 +8,13 @@ sudo -s
 apt update
 apt install curl
 
-bash languages.sh
+source ./languages.sh
 
 install_c
 install_rust
 install_node
 
-bash tools.sh
+source ./tools.sh
 
 install_zsh
 install_omz
@@ -22,7 +22,7 @@ install_nvim
 install_tmux
 install_docker
 
-bash utilities.sh
+source ./utilities.sh
 
 install_unzip
 install_keychain
@@ -31,11 +31,11 @@ install_zoxide
 install_fzf
 install_thefuck
 
-bash misc.sh
+source ./misc.sh
 
 install_htop
 
-bash init.sh
+source ./init.sh
 
 create_links
 change_shell

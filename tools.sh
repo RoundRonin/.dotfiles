@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 install_zsh () {
     apt install zsh -y 
