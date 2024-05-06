@@ -110,6 +110,7 @@ alias v="nvim"
 alias V="nvim"
 alias vim="nvim"
 alias space='~/.dotfiles/scripts/space.sh'
+alias keys='~/.dotfiles/scripts/initkeys.sh'
 
 eval "$(zoxide init zsh --cmd cd)"	
 
