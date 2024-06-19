@@ -13,16 +13,16 @@ apt install curl
 source ./languages.sh
 
 install_c
-install_rust
+# install_rust
 install_node
 
 source ./tools.sh
 
 install_zsh
-install_omz
-install_nvim
+# install_omz
+# install_nvim
 install_tmux
-install_docker
+# install_docker
 
 source ./utilities.sh
 
@@ -40,6 +40,9 @@ install_htop
 source ./init.sh
 
 create_links
+
+install_omz
+
 change_shell
 configure_ssh
 

@@ -5,7 +5,7 @@ install_zsh () {
 }
 
 install_omz () {
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
 
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -17,8 +17,8 @@ install_nvim () {
     then
         # MAC: curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
         git clone https://github.com/neovim/neovim
-        git checkout stable
-        cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+        cd neovim && git checkout stable
+        make CMAKE_BUILD_TYPE=Release
         sudo make install
     else
         # Release for AMD64

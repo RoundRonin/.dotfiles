@@ -60,7 +60,7 @@ return {
                 vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
                     vim.lsp.buf.format {
                         formatting_options = {
-                            tabSize = 8,
+                            tabSize = 4,
                             trimTrailingWhitespace = true,
                         }
                     }
@@ -110,55 +110,53 @@ return {
             --  If you want to override the default filetypes that your language server will attach to you can
             --  define the property 'filetypes' to the map in question.
             local servers = {
-                clangd = {},
-                eslint = {
-                },
+                -- eslint = {
+                -- },
                 -- gopls = {},
                 -- pyright = {},
                 -- tsserver = {},
                 -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
-                lua_ls = {
-                    Lua = {
-                        workspace = { checkThirdParty = false },
-                        telemetry = { enable = false },
-                        -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                        -- diagnostics = { disable = { 'missing-fields' } },
-                    },
-                },
+                -- lua_ls = {
+                --     Lua = {
+                --         workspace = { checkThirdParty = false },
+                --         telemetry = { enable = false },
+                --         -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                --         -- diagnostics = { disable = { 'missing-fields' } },
+                --     },
+                -- },
 
-
-                docker_compose_language_service = {},
-                pyright = {
-                    settings = {
-                        pyright = {
-                            disableOrganizeImports = true,
-                        },
-                        python = {
-                            analysis = {
-                                ignore = { '*' },
-                                typeCheckingMode = 'standard',
-                                autoSearchPaths = true,
-                                useLibraryCodeForTypes = true,
-                            },
-                            disableLanguageServices = false,
-                        },
-                    },
-                },
-                rust_analyzer = {
-                    ['rust-analyzer'] = {
-                        cargo = {
-                            features = 'all',
-                        },
-                        checkOnSave = true,
-                        check = {
-                            command = 'clippy',
-                        },
-                    },
-                },
-                tailwindcss = {},
-                svelte = {},
-                jsonls = {},
+                -- docker_compose_language_service = {},
+                -- pyright = {
+                --     settings = {
+                --         pyright = {
+                --             disableOrganizeImports = true,
+                --         },
+                --         python = {
+                --             analysis = {
+                --                 ignore = { '*' },
+                --                 typeCheckingMode = 'standard',
+                --                 autoSearchPaths = true,
+                --                 useLibraryCodeForTypes = true,
+                --             },
+                --             disableLanguageServices = false,
+                --         },
+                --     },
+                -- },
+                -- rust_analyzer = {
+                --     ['rust-analyzer'] = {
+                --         cargo = {
+                --             features = 'all',
+                --         },
+                --         checkOnSave = true,
+                --         check = {
+                --             command = 'clippy',
+                --         },
+                --     },
+                -- },
+                -- tailwindcss = {},
+                -- svelte = {},
+                -- jsonls = {},
             }
 
             -- require 'lspconfig'.eslint.setup({
@@ -170,6 +168,8 @@ return {
             --         })
             --     end,
             -- })
+            
+            require'lspconfig'.clangd.setup{}
 
             -- Setup neovim lua configuration
             require('neodev').setup()
