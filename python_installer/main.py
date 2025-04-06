@@ -10,8 +10,16 @@ class AppInstalation:
         self.dotfiles_dir = args.dotfiles_dir
         self.config_file = args.config_file
         self.home_dir = os.path.expanduser("~")
+
         self.system_info = SystemInfo()
-        self.package_isntaller = PackageInstaller(self.system_info.distro, self.profile, self.config_file)
+
+        self.package_installer = PackageInstaller(
+            distro=self.system_info.distro,
+            profile=self.profile,
+            packages_file=self.packages_file,
+            distros_file=self.distros_file
+        )
+
         self.symlink_manager = SymlinkManager(self.dotfiles_dir, self.home_dir)
 
     def run(self):

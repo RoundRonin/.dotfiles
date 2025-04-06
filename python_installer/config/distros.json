@@ -1,0 +1,20 @@
+{
+  "distros": {
+    "debian": {
+      "install": "sudo apt-get install -y {package}"
+    },
+    "ubuntu": {
+      "parent": "debian"
+    },
+    "popos": {
+      "parent": "debian"
+    },
+    "arch": {
+      "install": "sudo pacman -S --noconfirm {package}"
+    },
+    "_": {
+      "install": "echo 'No package manager defined for this distro'"
+    }
+  }
+}
+
