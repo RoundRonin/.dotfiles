@@ -1,0 +1,43 @@
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12.0
+
+
+[font.bold]
+family = "RobotoMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "RobotoMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "RobotoMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "RobotoMono Nerd Font"
+style = "Regular"
+
+#startup modes:Windowed, Maximized, Fullscreen
+[window]
+dynamic_padding = false
+opacity = 1.0
+title = "Alacritty"
+startup_mode = "Fullscreen"
+
+[window.padding]
+x = 16
+y = 16
+
+import = [
+  # uncomment the flavour you want below:
+  # "~/.config/alacritty/catppuccin-latte.toml"
+  # "~/.config/alacritty/catppuccin-frappe.toml"
+  # "~/.config/alacritty/catppuccin-macchiato.toml"
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+

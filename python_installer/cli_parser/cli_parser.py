@@ -1,4 +1,3 @@
-# cli_parser.py
 import argparse
 import os
 

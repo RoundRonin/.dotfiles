@@ -1,11 +1,13 @@
 from system_info import SystemInfo
-from package_isntaller import PackageInstaller
-from symlink manager import SymlinkManager
+from package_installer import PackageInstaller
+from symlink_manager import SymlinkManager
 from cli_parser import parse_args
+
+import os
 
 class AppInstalation:
 
-    def: __init__(self, args):
+    def __init__(self, args):
         self.profile = args.profile
         self.dotfiles_dir = args.dotfiles_dir
         self.config_file = args.config_file
@@ -30,5 +32,5 @@ class AppInstalation:
 
 if __name__ == "__mani__":
     args = parse_args()
-    app = AppInstallation(args)
+    app = AppInstalation(args)
     app.run()
