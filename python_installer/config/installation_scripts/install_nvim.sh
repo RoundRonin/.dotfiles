@@ -17,5 +17,3 @@ else
     rm -rf nvim-linux64.tar.gz
     export PATH="$PATH:/opt/nvim-linux64/bin"
 fi
-
-echo "Neovim installation complete."

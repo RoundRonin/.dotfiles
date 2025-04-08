@@ -65,16 +65,38 @@ class PackageInstaller:
 
         return None  # If no command could be resolved
 
+    def get_install_command(self, package):
+        """
+        Determines the installation command for a package.
+        """
+        origin = package.get("origin", "default")
+
+        if isinstance(origin, str):
+            # Handle "default" origin (use the distro default command template)
+            if origin == "default":
+                command_template = self.resolve_distro_command()
+                if command_template:
+                    return command_template.replace("{package}", package["name"])
+            return origin
+        elif isinstance(origin, dict):
+            # Handle per-distro and fallback logic
+            distro_command = origin.get(self.distro, None)
+            if distro_command and distro_command == "default":
+                command_template = self.resolve_distro_command()
+                if command_template:
+                    return command_template.replace("{package}", package["name"])
+            # Use distro-specific command if available, or fallback
+            return distro_command or origin.get("fallback", None)
+
+        return None
+
     def install_packages(self):
-        """
-        Installs only packages matching the active profile.
-        """
         packages = self.packages_config.get("packages", [])
+
         for package in packages:
-            # Check if the package belongs to the active profile
             profiles = package.get("profiles", ["default"])
             if self.profile not in profiles and "default" not in profiles:
-                continue  # Skip packages not relevant to this profile
+                continue
 
             install_command = self.get_install_command(package)
             if install_command:
@@ -86,4 +108,11 @@ class PackageInstaller:
             else:
                 print(f"No valid install command found for {package['name']} on distro {self.distro}")
 
+            postinstall = package.get("postinstall", "")
+            if postinstall:
+                print(f"Running post-install command for {package['name']}: {postinstall}")
+                try:
+                    subprocess.run(postinstall, shell=True, check=True)
+                except subprocess.CalledProcessError as e:
+                    print(f"Error in post-install command for {package['name']}: {e}")
 
