@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Prevent oh-my-zsh from automatically launching a new shell:
-export RUNZSH=no
+# export RUNZSH=no
 # Install oh-my-zsh unattended.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
 
