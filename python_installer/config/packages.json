@@ -39,7 +39,7 @@
         },
         {
             "name": "oh-my-zsh",
-            "origin": "bash config/installation_scripts/install_ohmyzsh.sh",
+            "origin": "bash python_installer/config/installation_scripts/install_ohmyzsh.sh",
             "profiles": [
                 "default",
                 "home",
@@ -48,7 +48,7 @@
         },
         {
             "name": "nvim",
-            "origin": "bash config/installation_scripts/install_nvim.sh",
+            "origin": "bash python_installer/config/installation_scripts/install_nvim.sh",
             "profiles": [
                 "default",
                 "home",
@@ -57,7 +57,7 @@
         },
         {
             "name": "tmux",
-            "origin": "bash config/installation_scripts/install_tmux.sh",
+            "origin": "bash python_installer/config/installation_scripts/install_tmux.sh",
             "profiles": [
                 "default",
                 "home",
@@ -66,7 +66,7 @@
         },
         {
             "name": "docker",
-            "origin": "bash config/installation_scripts/install_docker.sh",
+            "origin": "bash python_installer/config/installation_scripts/install_docker.sh",
             "profiles": [
                 "default",
                 "home",
@@ -91,7 +91,7 @@
             ]
         },
         {
-            "name": "fd",
+            "name": "fd-find",
             "origin": "default",
             "postinstall": "ln -s $(which fdfind) ~/.local/bin/fd",
             "profiles": [
@@ -102,7 +102,7 @@
         },
         {
             "name": "zoxide",
-            "origin": "bash config/installation_scripts/install_zoxide.sh",
+            "origin": "bash python_installer/config/installation_scripts/install_zoxide.sh",
             "profiles": [
                 "default",
                 "home",
@@ -111,7 +111,7 @@
         },
         {
             "name": "fzf",
-            "origin": "bash config/installation_scripts/install_fzf.sh",
+            "origin": "bash python_installer/config/installation_scripts/install_fzf.sh",
             "profiles": [
                 "default",
                 "home",
