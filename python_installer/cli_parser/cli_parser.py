@@ -10,16 +10,27 @@ def parse_args():
         help="Profile to install (e.g., home, work)"
     )
     parser.add_argument(
+        "--dotfiles-dir",
+        type=str,
+        default=os.path.expanduser("~/.dotfiles"),
+        help="Path to the root of your dotfiles repository"
+    )
+    parser.add_argument(
         "--packages-file",
         type=str,
-        default=os.path.abspath("config/packages.json"),
-        help="Path to the packages configuration file (default: config/packages.json)"
+        default="python_installer/config/packages.json",
+        help="Path to the packages configuration JSON file"
     )
     parser.add_argument(
         "--distros-file",
         type=str,
-        default=os.path.abspath("config/distros.json"),
-        help="Path to the distros configuration file (default: config/distros.json)"
+        default="python_installer/config/distros.json",
+        help="Path to the distros configuration JSON file"
+    )
+    parser.add_argument(
+        "--symlinks-file",
+        type=str,
+        default=None,
+        help="Path to the symlinks configuration JSON file (optional)"
     )
     return parser.parse_args()
-
