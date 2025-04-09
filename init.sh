@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# Ensure script is executable
-chmod +x init.sh
+set -e
 
 # Title Banner
 echo "=========================="
@@ -18,6 +16,6 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
-# Run the Python installer
+# Python3 is detected; proceed with the installation.
 echo "Python3 detected. Proceeding with installation..."
 python3 ./python_installer/main.py "$@"
