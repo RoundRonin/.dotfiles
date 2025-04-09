@@ -1,20 +1,23 @@
 {
-  "distros": {
-    "debian": {
-      "install": "sudo apt-get install -y {package}"
-    },
-    "ubuntu": {
-      "parent": "debian"
-    },
-    "popos": {
-      "parent": "debian"
-    },
-    "arch": {
-      "install": "sudo pacman -S --noconfirm {package}"
-    },
-    "_": {
-      "install": "echo 'No package manager defined for this distro'"
+    "distros": {
+        "debian": {
+            "install": "sudo apt-get install -y {package}",
+            "postinstall": "echo 'Running Debian-specific postinstall...'"
+        },
+        "ubuntu": {
+            "parent": "debian",
+            "postinstall": "sudo apt autoremove -y"
+        },
+        "popos": {
+            "parent": "debian",
+            "postinstall": "echo 'Running Pop!_OS postinstall...'"
+        },
+        "arch": {
+            "install": "sudo pacman -S --noconfirm {package}",
+            "postinstall": "echo 'Running Arch postinstall...'"
+        },
+        "_": {
+            "install": "echo 'No package manager defined for this distro'"
+        }
     }
-  }
 }
-

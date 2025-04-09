@@ -6,11 +6,17 @@ class PackageInstaller:
     Installs packages based on the current distro and package origin.
     Uses distros.json for distro-specific logic and packages.json for package installation details.
     """
-    def __init__(self, distro, profile, packages_file, distros_file):
+    def __init__(self, distro, profile, packages_file, distros_file, universal_postinstall_script=None):
         self.distro = distro
         self.profile = profile
         self.packages_config = self.load_config(packages_file)
         self.distros_config = self.load_config(distros_file)
+        # Allow universal postinstall script location to be passed in; fallback to a default path.
+        self.universal_postinstall_script = (
+            universal_postinstall_script
+            if universal_postinstall_script
+            else "./python_installer/config/installation_scripts/universal_postinstall.sh"
+        )
 
     def load_config(self, file_path):
         try:
@@ -28,12 +34,10 @@ class PackageInstaller:
         distro_config = self.distros_config.get("distros", {})
         current_distro = distro_config.get(self.distro, None)
 
-        # Traverse up the inheritance tree if a parent is defined:
         while current_distro and "parent" in current_distro:
-            parent_distro = current_distro["parent"]
-            current_distro = distro_config.get(parent_distro, None)
+            parent = current_distro["parent"]
+            current_distro = distro_config.get(parent, None)
 
-        # Use the install command from the resolved distro config, or fall back via "_" key.
         if current_distro:
             return current_distro.get("install", distro_config.get("_", {}).get("install", None))
         else:
@@ -43,12 +47,11 @@ class PackageInstaller:
         """
         Determines the installation command for a package.
         If the package's origin is:
-          - a string "default": it uses the distro's default installation command template.
-          - any other string: the given command is used.
-          - a dict: tries to use a distro-specific key, then falls back to the "fallback" key.
+          - the string "default": use the distro's default command (and replace {package}),
+          - any other string: use that command,
+          - a dict: try the distro-specific command, falling back to the "fallback" key.
         """
         origin = package.get("origin", "default")
-
         if isinstance(origin, str):
             if origin == "default":
                 command_template = self.resolve_distro_command()
@@ -64,17 +67,32 @@ class PackageInstaller:
             return distro_command or origin.get("fallback", None)
         return None
 
+    def run_distro_postinstall(self):
+        """
+        Walks up the inheritance chain from the distros config to determine the effective
+        postinstall command for the current distro.
+        """
+        config = self.distros_config.get("distros", {})
+        current = config.get(self.distro)
+        postinstall = None
+        while current:
+            if "postinstall" in current:
+                postinstall = current["postinstall"]
+            if "parent" in current:
+                current = config.get(current["parent"])
+            else:
+                break
+        return postinstall
+
     def install_packages(self):
         packages = self.packages_config.get("packages", [])
 
+        # Process each package.
         for package in packages:
-            # Determine which installation profiles apply for this package.
             profiles = package.get("profiles", ["default"])
-            # If the current profile isn’t listed and "default" is not provided, skip this package.
             if self.profile not in profiles and "default" not in profiles:
                 continue
 
-            # Get the installation command (either using distro defaults or a custom command).
             install_command = self.get_install_command(package)
             if install_command:
                 print(f"Installing {package['name']} with command: {install_command}")
@@ -85,7 +103,7 @@ class PackageInstaller:
             else:
                 print(f"No valid install command found for {package['name']} on distro {self.distro}")
 
-            # Execute an optional post-install command for additional setup (like creating symlinks).
+            # Run package-specific post-install commands if defined.
             postinstall = package.get("postinstall", "")
             if postinstall:
                 print(f"Running post-install command for {package['name']}: {postinstall}")
@@ -93,3 +111,20 @@ class PackageInstaller:
                     subprocess.run(postinstall, shell=True, check=True)
                 except subprocess.CalledProcessError as e:
                     print(f"Error in post-install command for {package['name']}: {e}")
+
+        # Once all packages are processed, run distro-specific post-install command.
+        distro_postinstall = self.run_distro_postinstall()
+        if distro_postinstall:
+            print(f"Running distro-specific post-install command: {distro_postinstall}")
+            try:
+                subprocess.run(distro_postinstall, shell=True, check=True)
+            except subprocess.CalledProcessError as e:
+                print(f"Error running distro-specific post-install command: {e}")
+
+        # Finally, run universal post-install tasks.
+        if self.universal_postinstall_script:
+            print(f"Running universal post-install tasks from {self.universal_postinstall_script}...")
+            try:
+                subprocess.run(self.universal_postinstall_script, shell=True, check=True)
+            except subprocess.CalledProcessError as e:
+                print(f"Error running universal post-install tasks: {e}")
