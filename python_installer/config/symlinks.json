@@ -1,0 +1,28 @@
+{
+    "symlinks": [
+        {
+            "target": ".bashrc",
+            "source": ".bashrc"
+        },
+        {
+            "target": ".zshrc",
+            "source": ".zshrc"
+        },
+        {
+            "target": ".tmux.conf",
+            "source": ".tmux.conf"
+        },
+        {
+            "target": ".config/htop",
+            "source": ".config/htop"
+        },
+        {
+            "target": ".config/nvim",
+            "source": ".config/nvim"
+        },
+        {
+            "target": ".config/alacritty",
+            "source": ".config/alacritty"
+        }
+    ]
+}

@@ -1,71 +1,132 @@
 {
-  "packages": [
-    {
-      "name": "curl",
-      "origin": "default",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "git",
-      "origin": "default",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "zsh",
-      "origin": "default",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "oh-my-zsh",
-      "origin": "bash config/installation_scripts/install_ohmyzsh.sh",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "nvim",
-      "origin": "bash config/installation_scripts/install_nvim.sh",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "tmux",
-      "origin": "bash config/installation_scripts/install_tmux.sh",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "docker",
-      "origin": "bash config/installation_scripts/install_docker.sh",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "unzip",
-      "origin": "default",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "keychain",
-      "origin": "default",
-      "profiles": ["default", "home"]
-    },
-    {
-      "name": "fd",
-      "origin": "default",
-      "postinstall": "ln -s $(which fdfind) ~/.local/bin/fd",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "zoxide",
-      "origin": "bash config/installation_scripts/install_zoxide.sh",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "fzf",
-      "origin": "bash config/installation_scripts/install_fzf.sh",
-      "profiles": ["default", "home", "work"]
-    },
-    {
-      "name": "thefuck",
-      "origin": "default",
-      "postinstall": "",
-      "profiles": ["default", "home", "work"]
-    }
-  ]
+    "packages": [
+        {
+            "name": "curl",
+            "origin": "default",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "git",
+            "origin": "default",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "htop",
+            "origin": "default",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "zsh",
+            "origin": "default",
+            "postinstall": "chsh -s /usr/bin/zsh",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "oh-my-zsh",
+            "origin": "bash config/installation_scripts/install_ohmyzsh.sh",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "nvim",
+            "origin": "bash config/installation_scripts/install_nvim.sh",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "tmux",
+            "origin": "bash config/installation_scripts/install_tmux.sh",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "docker",
+            "origin": "bash config/installation_scripts/install_docker.sh",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "unzip",
+            "origin": "default",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "keychain",
+            "origin": "default",
+            "profiles": [
+                "default",
+                "home"
+            ]
+        },
+        {
+            "name": "fd",
+            "origin": "default",
+            "postinstall": "ln -s $(which fdfind) ~/.local/bin/fd",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "zoxide",
+            "origin": "bash config/installation_scripts/install_zoxide.sh",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "fzf",
+            "origin": "bash config/installation_scripts/install_fzf.sh",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        },
+        {
+            "name": "thefuck",
+            "origin": "default",
+            "postinstall": "",
+            "profiles": [
+                "default",
+                "home",
+                "work"
+            ]
+        }
+    ]
 }
