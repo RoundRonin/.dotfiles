@@ -56,7 +56,8 @@
         },
         {
             "name": "tmux",
-            "origin": "bash python_installer/config/installation_scripts/install_tmux.sh",
+            "origin": "default",
+            "postinstall": "bash python_installer/config/installation_scripts/install_tpm.sh",
             "profiles": [
                 "default",
                 "home",
