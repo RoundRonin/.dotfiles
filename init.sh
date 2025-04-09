@@ -6,6 +6,9 @@ echo "=========================="
 echo "Dotfiles Installer - Init"
 echo "=========================="
 
+# Ensure the universal post-install script is executable.
+chmod +x python_installer/config/installation_scripts/universal_postinstall.sh
+
 # Install dependencies from requirements.txt
 if [ -f requirements.txt ]; then
     echo "Installing required Python packages..."

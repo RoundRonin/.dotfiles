@@ -30,7 +30,6 @@
         {
             "name": "zsh",
             "origin": "default",
-            "postinstall": "chsh -s /usr/bin/zsh",
             "profiles": [
                 "default",
                 "home",
@@ -93,7 +92,7 @@
         {
             "name": "fd-find",
             "origin": "default",
-            "postinstall": "ln -s $(which fdfind) ~/.local/bin/fd",
+            "postinstall": "mkdir -p ~/.local/bin && ln -s $(which fdfind) ~/.local/bin/fd",
             "profiles": [
                 "default",
                 "home",
