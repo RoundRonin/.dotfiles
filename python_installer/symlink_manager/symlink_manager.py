@@ -1,5 +1,6 @@
 import os
 import json
+from logger import info, warning, error, debug
 
 class SymlinkManager:
     """
@@ -58,28 +59,28 @@ class SymlinkManager:
             # Compute full file paths.
             target_path = os.path.join(self.home_dir, target)
             source_path = os.path.join(self.dotfiles_dir, source)
-            print(f"Processing symlink: {target_path} -> {source_path}")
+            info(f"Processing symlink: {target_path} -> {source_path}")
 
             # If a non-symlink file exists at the target, back it up.
             if os.path.exists(target_path) and not os.path.islink(target_path):
                 backup_path = target_path + ".backup"
-                print(f"Backing up existing file {target_path} to {backup_path}")
+                info(f"Backing up existing file {target_path} to {backup_path}")
                 os.rename(target_path, backup_path)
                 
             # If there's already a symlink, remove it.
             if os.path.islink(target_path):
-                print(f"Removing existing symlink at {target_path}")
+                info(f"Removing existing symlink at {target_path}")
                 os.remove(target_path)
             
             # Ensure the directory for the target exists.
             target_dir = os.path.dirname(target_path)
             if not os.path.exists(target_dir):
                 os.makedirs(target_dir, exist_ok=True)
-                print(f"Created directory {target_dir}")
+                info(f"Created directory {target_dir}")
                 
             # Create the symlink.
             try:
                 os.symlink(source_path, target_path)
-                print(f"Created symlink: {target_path} -> {source_path}")
+                info(f"Created symlink: {target_path} -> {source_path}")
             except Exception as e:
-                print(f"Error creating symlink for {target}: {e}")
+                error(f"Error creating symlink for {target}: {e}")

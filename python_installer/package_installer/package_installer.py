@@ -1,5 +1,6 @@
 import json
 import subprocess
+from logger import info, warning, error, debug
 
 class PackageInstaller:
     """
@@ -23,7 +24,7 @@ class PackageInstaller:
             with open(file_path, 'r') as f:
                 return json.load(f)
         except Exception as e:
-            print(f"Error loading config from {file_path}: {e}")
+            error(f"Error loading config from {file_path}: {e}")
             raise
 
     def resolve_distro_command(self):
@@ -95,36 +96,36 @@ class PackageInstaller:
 
             install_command = self.get_install_command(package)
             if install_command:
-                print(f"Installing {package['name']} with command: {install_command}")
+                info(f"Installing {package['name']} with command: {install_command}")
                 try:
                     subprocess.run(install_command, shell=True, check=True)
                 except subprocess.CalledProcessError as e:
-                    print(f"Error installing {package['name']}: {e}")
+                    error(f"Error installing {package['name']}: {e}")
             else:
-                print(f"No valid install command found for {package['name']} on distro {self.distro}")
+                warning(f"No valid install command found for {package['name']} on distro {self.distro}")
 
             # Run package-specific post-install commands if defined.
             postinstall = package.get("postinstall", "")
             if postinstall:
-                print(f"Running post-install command for {package['name']}: {postinstall}")
+                info(f"Running post-install command for {package['name']}: {postinstall}")
                 try:
                     subprocess.run(postinstall, shell=True, check=True)
                 except subprocess.CalledProcessError as e:
-                    print(f"Error in post-install command for {package['name']}: {e}")
+                    error(f"Error in post-install command for {package['name']}: {e}")
 
         # Once all packages are processed, run distro-specific post-install command.
         distro_postinstall = self.run_distro_postinstall()
         if distro_postinstall:
-            print(f"Running distro-specific post-install command: {distro_postinstall}")
+            info(f"Running distro-specific post-install command: {distro_postinstall}")
             try:
                 subprocess.run(distro_postinstall, shell=True, check=True)
             except subprocess.CalledProcessError as e:
-                print(f"Error running distro-specific post-install command: {e}")
+                error(f"Error running distro-specific post-install command: {e}")
 
         # Finally, run universal post-install tasks.
         if self.universal_postinstall_script:
-            print(f"Running universal post-install tasks from {self.universal_postinstall_script}...")
+            info(f"Running universal post-install tasks from {self.universal_postinstall_script}...")
             try:
                 subprocess.run(self.universal_postinstall_script, shell=True, check=True)
             except subprocess.CalledProcessError as e:
-                print(f"Error running universal post-install tasks: {e}")
+                error(f"Error running universal post-install tasks: {e}")

@@ -2,6 +2,7 @@ from system_info.system_info import SystemInfo
 from package_installer.package_installer import PackageInstaller
 from symlink_manager.symlink_manager import SymlinkManager
 from cli_parser.cli_parser import parse_args
+from logger import info  
 
 import os
 
@@ -37,8 +38,8 @@ class AppInstallation:
         self.symlink_manager = SymlinkManager(self.symlinks_file, self.dotfiles_dir, self.home_dir)
 
     def run(self):
-        print(f"Detected distro: {self.system_info.distro}")
-        print(f"Running installation for profile: '{self.profile}'")
+        info(f"Detected distro: {self.system_info.distro}")
+        info(f"Running installation for profile: '{self.profile}'")
         self.package_installer.install_packages()
         self.symlink_manager.create_symlinks()
 

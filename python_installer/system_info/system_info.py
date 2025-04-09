@@ -1,3 +1,5 @@
+from logger import info, warning, error, debug
+
 class SystemInfo:
     """
     Detects and provides system-specific information
@@ -14,5 +16,5 @@ class SystemInfo:
                         distro = line.strip().split("=")[1].strip('"')
                         break
         except Exception as e:
-            print(f"Error detecting ditsro: {e}")
+            error(f"Error detecting ditsro: {e}")
         return distro

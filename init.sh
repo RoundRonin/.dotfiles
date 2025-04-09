@@ -6,7 +6,13 @@ echo "=========================="
 echo "Dotfiles Installer - Init"
 echo "=========================="
 
-# Check if Python3 is available
+# Install dependencies from requirements.txt
+if [ -f requirements.txt ]; then
+    echo "Installing required Python packages..."
+    python3 -m pip install -r requirements.txt
+fi
+
+# Check if Python3 is available.
 if ! command -v python3 &> /dev/null; then
     echo "Python3 is not installed on your system."
     echo "Please install Python3 to continue."
