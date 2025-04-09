@@ -1,4 +1,3 @@
-# logger.py
 from colorama import Fore, Style
 
 def info(msg):
